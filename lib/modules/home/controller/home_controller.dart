@@ -11,11 +11,11 @@ class HomeController {
   final SecureStorage secureStorage = SecureStorage();
 
   void getAllData() async {
-    ref.read(itemProvider).fetchItems(await secureStorage.readAllData());
+    ref.read(itemProvider).fetchItems(await secureStorage.fetchItems());
   }
 
   void deleteItem(Item item) {
-    secureStorage.deleteSecureData(item);
+    secureStorage.deleteItem(item);
     ref.read(itemProvider).deleteItem(item);
   }
 }

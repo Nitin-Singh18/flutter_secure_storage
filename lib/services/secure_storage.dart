@@ -7,22 +7,24 @@ class SecureStorage {
   AndroidOptions _getAndroidOptions() => const AndroidOptions(
         encryptedSharedPreferences: true,
       );
-  Future set(String key, String value) async {
+  Future insert(String key, String value) async {
     await storage.write(key: key, value: value, aOptions: _getAndroidOptions());
   }
 
-  Future<String?> get(String title) async {
+  Future<String?> fetch(String title) async {
     return await storage.read(key: title, aOptions: _getAndroidOptions());
   }
 
-  Future<List<Item>> readAllData() async {
-    var allData = await storage.readAll(aOptions: _getAndroidOptions());
+  Future<List<Item>> fetchItems() async {
+    Map<String, String> allData =
+        await storage.readAll(aOptions: _getAndroidOptions());
+    print(allData);
     List<Item> list =
         allData.entries.map((e) => Item(title: e.key, des: e.value)).toList();
     return list;
   }
 
-  Future<void> deleteSecureData(Item item) async {
+  Future<void> deleteItem(Item item) async {
     await storage.delete(key: item.title, aOptions: _getAndroidOptions());
   }
 }

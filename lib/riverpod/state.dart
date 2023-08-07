@@ -7,22 +7,22 @@ final itemProvider =
     ChangeNotifierProvider<ItemProvider>((ref) => ItemProvider());
 
 class ItemProvider extends ChangeNotifier {
-  List<Item> _item = [];
+  List<Item> _itemList = [];
 
-  List<Item> get item => _item;
+  List<Item> get item => _itemList;
 
   void addItem(Item item) {
-    _item.add(item);
+    _itemList.add(item);
     notifyListeners();
   }
 
   void fetchItems(List<Item> items) {
-    _item = items;
+    _itemList = items;
     notifyListeners();
   }
 
   void deleteItem(Item item) {
-    _item.remove(item);
+    _itemList.remove(item);
     notifyListeners();
   }
 }

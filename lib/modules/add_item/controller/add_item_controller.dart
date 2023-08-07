@@ -14,7 +14,7 @@ class AddItemController {
   final SecureStorage secureStorage = SecureStorage();
 
   void set() {
-    secureStorage.set(key.text, value.text);
+    secureStorage.insert(key.text, value.text);
     final Item item = Item(title: key.text, des: value.text);
     ref.read(itemProvider).addItem(item);
     print('Added');
